@@ -1,0 +1,88 @@
+// Calculates a = x*y
+// a is a local variable
+// x & y are static variables
+
+// Put your code here.
+push static 0
+push constant 0
+gt
+if-goto POSA
+push static 0
+neg
+pop temp 0
+goto FINDB
+label POSA
+push static 0
+pop temp 0
+goto FINDB
+label FINDB
+push static 1
+push constant 0
+gt
+if-goto POSB
+push static 1
+neg 
+pop temp 1
+goto CHECKAB
+label POSB
+push static 1 
+pop temp 1
+goto CHECKAB
+label CHECKAB
+push temp 0
+push temp 1
+lt 
+if-goto CHANGE
+goto UPDATE
+label CHANGE
+push temp 0
+push temp 1
+pop temp 0
+pop temp 1
+goto UPDATE
+label UPDATE
+push constant 0
+pop temp 2
+label CHECKB
+push temp 1
+push constant 0
+gt 
+if-goto RECUR 
+goto ENDRECUR
+label RECUR
+push temp 2
+push temp 0
+add
+pop temp 2 
+push temp 1
+push constant 1
+sub
+pop temp 1
+goto CHECKB
+label ENDRECUR
+push static 0
+push constant 0
+gt 
+if-goto PLUS
+push static 1 
+push constant 0
+gt 
+if-goto NOTPLUS
+goto PLUSPLUS
+label PLUS
+push static 1
+push constant 0
+gt
+if-goto PLUSPLUS
+goto NOTPLUS
+label NOTPLUS
+push temp 2
+neg 
+pop local 0
+goto END
+label PLUSPLUS
+push temp 2
+pop local 0
+goto END
+label END
+goto END
